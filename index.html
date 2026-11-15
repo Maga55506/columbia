@@ -45,15 +45,21 @@
         }
 
         /* --- ШАПКА НА ПЕСОЧНОМ ФОНЕ (ПОД ЛОГОТИП) --- */
-        header {
-            background-color: var(--sand);
-            color: var(--graphite);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid var(--amber);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
-        }
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="brand-logo">
+                <img src="file_0000000013508246aa0559ca3913e7da.png" alt="COLUMBIA Строительная компания">
+            </a>
+
+            <nav class="nav-links">
+                <a href="#services">Услуги</a>
+                <a href="#approach">Подход</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+
+            <div class="header-badge">Строительство и отделка</div>
+        </div>
+    </header>
 
         .header-inner {
             display: flex;
