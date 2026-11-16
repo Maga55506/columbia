@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLUMBIA — Строительная компания полного цикла</title>
+    <title>COLUMBIA — Внутренняя отделка и капитальный ремонт под ключ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --graphite: #2A2F36;
-            --graphite-dark: #1F2329;
+            --graphite-dark: #1E2228;
+            --graphite-card: #242930;
             --steel: #6B7886;
             --amber: #E3A93C;
             --amber-hover: #cfa032;
             --sand: #F0EBDD;
-            --sand-soft: rgba(240, 235, 221, 0.78);
+            --sand-soft: rgba(240, 235, 221, 0.8);
             --border-light: rgba(240, 235, 221, 0.12);
         }
 
@@ -35,23 +36,26 @@
             color: var(--sand);
             line-height: 1.6;
             padding-bottom: 84px;
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 1120px;
+            max-width: 1160px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         /* --- АНИМАЦИИ --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .animate-fade {
-            animation: fadeIn 0.8s ease forwards;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- ШАПКА --- */
@@ -62,39 +66,50 @@
             top: 0;
             z-index: 100;
             border-bottom: 2px solid var(--amber);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
         }
 
         .header-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 10px 0;
         }
 
         .brand-logo {
             display: inline-flex;
             align-items: center;
+            gap: 12px;
             text-decoration: none;
+            color: var(--graphite);
         }
 
         .brand-logo img {
-            height: 52px;
+            height: 58px;
             width: auto;
             display: block;
             object-fit: contain;
         }
 
+        .logo-fallback {
+            display: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 0.08em;
+            color: var(--graphite);
+        }
+
         .nav-links {
             display: none;
-            gap: 24px;
+            gap: 22px;
         }
 
         .nav-links a {
             color: var(--graphite);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 700;
+            font-size: 0.88rem;
             transition: color 0.2s;
         }
 
@@ -103,20 +118,21 @@
         }
 
         .header-badge {
-            font-size: 0.78rem;
-            font-weight: 700;
+            font-size: 0.74rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             color: var(--graphite);
-            background: rgba(42, 47, 54, 0.08);
+            background: rgba(42, 47, 54, 0.09);
             padding: 6px 12px;
             border-radius: 10px;
         }
 
-        /* --- ПЕРВЫЙ ЭКРАН --- */
+        /* --- ПЕРВЫЙ ЭКРАН (HERO) --- */
         .hero {
-            padding: 60px 0 70px;
-            background: linear-gradient(180deg, var(--graphite) 0%, var(--graphite-dark) 100%);
+            padding: 52px 0 64px;
+            background: radial-gradient(circle at top right, rgba(227, 169, 60, 0.1), transparent 45%),
+                        linear-gradient(180deg, var(--graphite) 0%, var(--graphite-dark) 100%);
             border-bottom: 1px solid var(--border-light);
         }
 
@@ -130,20 +146,20 @@
         .hero-tag {
             display: inline-block;
             color: var(--amber);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             margin-bottom: 12px;
         }
 
         .hero h1 {
             font-family: 'Cinzel', 'Manrope', serif;
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-size: clamp(1.85rem, 5.2vw, 3rem);
             line-height: 1.15;
             font-weight: 700;
             color: var(--sand);
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .hero h1 span {
@@ -152,12 +168,12 @@
 
         .hero p {
             color: var(--sand-soft);
-            font-size: 1.05rem;
-            max-width: 560px;
+            font-size: 1.02rem;
+            max-width: 570px;
             margin-bottom: 28px;
         }
 
-        /* КНОПКИ СВЯЗИ */
+        /* --- УНИВЕРСАЛЬНЫЕ КНОПКИ --- */
         .cta-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -173,11 +189,15 @@
             padding: 15px 18px;
             border-radius: 14px;
             font-weight: 700;
-            font-size: 0.98rem;
+            font-size: 0.96rem;
             text-decoration: none;
-            transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
             border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
         }
 
         .btn:active {
@@ -193,7 +213,7 @@
         .btn-wa {
             background-color: var(--amber);
             color: var(--graphite-dark);
-            box-shadow: 0 6px 18px rgba(227, 169, 60, 0.22);
+            box-shadow: 0 6px 20px rgba(227, 169, 60, 0.25);
         }
 
         .btn-wa:hover {
@@ -203,7 +223,7 @@
         .btn-tg {
             background-color: var(--steel);
             color: var(--sand);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
         }
 
         .btn-tg:hover {
@@ -211,16 +231,16 @@
         }
 
         .hero-card {
-            background: rgba(240, 235, 221, 0.04);
+            background: rgba(240, 235, 221, 0.03);
             border: 1px solid var(--border-light);
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 24px;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 14px;
         }
 
         .stat-item {
@@ -231,8 +251,8 @@
         }
 
         .stat-num {
-            font-size: 1.35rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 800;
             color: var(--amber);
             margin-bottom: 4px;
         }
@@ -242,131 +262,333 @@
             color: var(--sand-soft);
         }
 
-        /* --- СЕКЦИИ --- */
+        /* --- ОБЩИЕ СТИЛИ СЕКЦИЙ --- */
         section {
-            padding: 60px 0;
+            padding: 64px 0;
+        }
+
+        .section-tag {
+            color: var(--amber);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 6px;
         }
 
         .section-title {
-            font-size: 1.7rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--sand);
             font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 4vw, 2.15rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--sand);
         }
 
         .section-sub {
             color: var(--sand-soft);
-            font-size: 1rem;
-            margin-bottom: 36px;
+            font-size: 0.98rem;
+            max-width: 650px;
+            margin-bottom: 28px;
         }
 
-        /* УСЛУГИ */
-        .cards-grid {
+        /* --- ФИЛЬТРЫ УСЛУГ --- */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .filter-btn {
+            background: var(--graphite-card);
+            border: 1px solid var(--border-light);
+            color: var(--sand);
+            padding: 9px 16px;
+            border-radius: 12px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--amber);
+        }
+
+        .filter-btn.active {
+            background: var(--amber);
+            color: var(--graphite-dark);
+            border-color: var(--amber);
+            font-weight: 700;
+        }
+
+        /* --- 11 НАПРАВЛЕНИЙ РАБОТ С КАРТИНКАМИ --- */
+        .services-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
         }
 
         .service-card {
-            background: var(--graphite-dark);
+            background: var(--graphite-card);
             border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 26px;
-            transition: transform 0.2s, border-color 0.2s;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .service-card.hidden {
+            display: none;
         }
 
         .service-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             border-color: var(--amber);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
         }
 
-        .service-card h3 {
-            font-size: 1.2rem;
+        .service-img-wrap {
+            position: relative;
+            height: 175px;
+            overflow: hidden;
+            background: #1a1e24;
+        }
+
+        .service-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .service-num {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(30, 34, 40, 0.88);
             color: var(--amber);
-            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(227, 169, 60, 0.35);
         }
 
-        .service-card p {
-            font-size: 0.95rem;
+        .service-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-body h3 {
+            font-size: 1.1rem;
+            color: var(--sand);
+            margin-bottom: 8px;
+        }
+
+        .service-body p {
+            font-size: 0.88rem;
             color: var(--sand-soft);
         }
 
-        /* ЭТАПЫ РАБОТЫ */
-        .steps-grid {
+        /* --- 7 ПРЕИМУЩЕСТВ КОМПАНИИ --- */
+        .advantages-section {
+            background-color: var(--graphite-dark);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .adv-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
         }
 
-        .step-card {
-            background: rgba(240, 235, 221, 0.03);
+        .adv-card {
+            background: var(--graphite);
             border: 1px solid var(--border-light);
-            border-radius: 14px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 22px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .adv-card:hover {
+            border-color: var(--amber);
+            transform: translateY(-3px);
+        }
+
+        .adv-card.highlight {
+            border-color: rgba(227, 169, 60, 0.5);
+            background: linear-gradient(145deg, rgba(227, 169, 60, 0.08), var(--graphite));
+        }
+
+        .adv-header {
             display: flex;
-            gap: 16px;
-            align-items: flex-start;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
-        .step-num {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+        .adv-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(227, 169, 60, 0.14);
             color: var(--amber);
-            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            flex-shrink: 0;
         }
 
-        .step-content h4 {
+        .adv-card h3 {
             font-size: 1.05rem;
-            margin-bottom: 6px;
             color: var(--sand);
         }
 
-        .step-content p {
-            font-size: 0.9rem;
+        .adv-card p {
+            font-size: 0.88rem;
             color: var(--sand-soft);
         }
 
-        /* ПЕСОЧНЫЙ БЛОК */
+        /* --- ЦЕНООБРАЗОВАНИЕ (АУКЦИОН МАСТЕРОВ + СМЕТА ПО ОБЪЁМУ) --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .price-card {
+            background: var(--graphite-card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 28px 24px;
+            position: relative;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: rgba(227, 169, 60, 0.14);
+            color: var(--amber);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        .price-card h3 {
+            font-size: 1.25rem;
+            color: var(--sand);
+            margin-bottom: 12px;
+        }
+
+        .price-card p {
+            font-size: 0.93rem;
+            color: var(--sand-soft);
+            margin-bottom: 16px;
+        }
+
+        .price-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: var(--sand);
+        }
+
+        .price-list li::before {
+            content: "✓ ";
+            color: var(--amber);
+            font-weight: 800;
+        }
+
+        /* --- С КЕМ РАБОТАЕМ --- */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .client-card {
+            background: var(--graphite-dark);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 28px 24px;
+            border-top: 3px solid var(--amber);
+        }
+
+        .client-card.steel-top {
+            border-top-color: var(--steel);
+        }
+
+        .client-card h3 {
+            font-size: 1.22rem;
+            color: var(--amber);
+            margin-bottom: 10px;
+        }
+
+        .client-card.steel-top h3 {
+            color: var(--sand);
+        }
+
+        .client-card p {
+            font-size: 0.92rem;
+            color: var(--sand-soft);
+            margin-bottom: 16px;
+        }
+
+        /* --- ПЕСОЧНЫЙ БАННЕР --- */
         .sand-banner {
             background-color: var(--sand);
             color: var(--graphite);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 36px 28px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
         }
 
         .sand-banner h2 {
+            font-family: 'Cinzel', serif;
             font-size: 1.6rem;
             margin-bottom: 12px;
-            font-family: 'Cinzel', serif;
         }
 
         .sand-banner p {
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: #3d444d;
             margin-bottom: 24px;
-            max-width: 600px;
+            max-width: 620px;
         }
 
-        /* ФУТЕР */
+        /* --- ФУТЕР --- */
         footer {
             text-align: center;
-            padding: 30px 20px 40px;
+            padding: 32px 20px 44px;
             color: var(--steel);
             font-size: 0.85rem;
             border-top: 1px solid var(--border-light);
         }
 
-        /* НИЖНЯЯ ПАНЕЛЬ С ЗВОНКОМ */
+        /* --- НИЖНЯЯ ЗАКРЕПЛЁННАЯ КНОПКА «ПОЗВОНИТЬ» --- */
         .bottom-call-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(31, 35, 41, 0.95);
+            background: rgba(30, 34, 40, 0.95);
             backdrop-filter: blur(10px);
             padding: 12px 20px;
             border-top: 1px solid var(--border-light);
@@ -397,51 +619,60 @@
             background-color: var(--amber);
         }
 
-        .btn-call-bottom:active {
-            transform: scale(0.98);
-        }
-
-        /* ПК ВЕРСИЯ */
+        /* --- АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И ПК --- */
         @media (min-width: 768px) {
             .nav-links {
                 display: flex;
             }
             .brand-logo img {
-                height: 60px;
+                height: 66px;
             }
             .hero {
-                padding: 80px 0 90px;
+                padding: 76px 0 88px;
             }
             .hero-grid {
                 grid-template-columns: 1.2fr 0.8fr;
                 gap: 40px;
             }
-            .cards-grid {
+            .services-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .steps-grid {
+            .adv-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            .adv-card.highlight {
+                grid-column: span 3;
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
-<body class="animate-fade">
+<body>
 
     <!-- ШАПКА -->
     <header>
         <div class="container header-inner">
             <a href="#" class="brand-logo">
-                <img src="file_0000000013508246aa0559ca3913e7da.png" alt="COLUMBIA Строительная компания">
+                <img src="./file_0000000013508246aa0559ca3913e7da.png" 
+                     alt="COLUMBIA" 
+                     onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+                <span id="logoFallback" class="logo-fallback">COLUMBIA</span>
             </a>
 
             <nav class="nav-links">
-                <a href="#services">Услуги</a>
-                <a href="#about">О нас</a>
-                <a href="#steps">Этапы</a>
+                <a href="#services">Направления</a>
+                <a href="#advantages">Преимущества</a>
+                <a href="#pricing">Ценообразование</a>
+                <a href="#clients">Форматы</a>
                 <a href="#contacts">Контакты</a>
             </nav>
 
-            <div class="header-badge">Строительство & Отделка</div>
+            <div class="header-badge">Внутренняя отделка</div>
         </div>
     </header>
 
@@ -449,10 +680,10 @@
         <!-- ПЕРВЫЙ ЭКРАН -->
         <section class="hero">
             <div class="container hero-grid">
-                <div>
+                <div class="reveal active">
                     <span class="hero-tag">COLUMBIA CONSTRUCTION GROUP</span>
-                    <h1>Качественное строительство и <span>премиальная отделка</span></h1>
-                    <p>Профессиональный ремонт квартир, коттеджей и коммерческих помещений под ключ. Строгий технический надзор, фиксированная смета и соблюдение сроков.</p>
+                    <h1>Внутренняя отделка и <span>капитальный ремонт</span> под ключ</h1>
+                    <p>От демонтажа и инженерных сетей до финишной покраски и монтажа плинтусов. Мастера со стажем от 15 лет, ежедневный фотоконтроль и умная оптимизация сметы.</p>
 
                     <div class="cta-group">
                         <a id="waBtn" href="#" target="_blank" rel="noopener" class="btn btn-wa">
@@ -466,90 +697,329 @@
                     </div>
                 </div>
 
-                <div class="hero-card">
+                <div class="hero-card reveal active">
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <div class="stat-num">100%</div>
-                            <div class="stat-label">Фиксация сметы в договоре</div>
+                            <div class="stat-num">15+ лет</div>
+                            <div class="stat-label">Минимальный стаж профильных мастеров</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">Технадзор</div>
-                            <div class="stat-label">Контроль качества работ</div>
+                            <div class="stat-num">100+</div>
+                            <div class="stat-label">Проверенных специалистов в пуле компании</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">Отчёты</div>
-                            <div class="stat-label">Фото и видео со стройки</div>
+                            <div class="stat-num">Фотоотчёт</div>
+                            <div class="stat-label">Прозрачный контроль каждого этапа</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">Под ключ</div>
-                            <div class="stat-label">От проекта до новоселья</div>
+                            <div class="stat-num">11 видов</div>
+                            <div class="stat-label">Полный цикл внутренней отделки</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- УСЛУГИ -->
+        <!-- 1. ОСНОВНЫЕ НАПРАВЛЕНИЯ: ВНУТРЕННЯЯ ОТДЕЛКА (11 ПУНКТОВ С КАРТИНКАМИ) -->
         <section id="services">
             <div class="container">
-                <h2 class="section-title">Направления работы</h2>
-                <p class="section-sub">Полный спектр строительных и отделочных услуг</p>
+                <div class="reveal">
+                    <span class="section-tag">Специализация компании</span>
+                    <h2 class="section-title">Направления внутренней отделки</h2>
+                    <p class="section-sub">Выполняем как отдельные виды работ на небольших объектах, так и комплексный капитальный ремонт под ключ.</p>
+                </div>
 
-                <div class="cards-grid">
-                    <div class="service-card">
-                        <h3>Внутренняя отделка</h3>
-                        <p>Капитальный и косметический ремонт квартир, таунхаусов и частных домов по дизайн-проекту любой сложности.</p>
+                <!-- ФИЛЬТР ПО ЭТАПАМ -->
+                <div class="filter-bar reveal">
+                    <button class="filter-btn active" data-filter="all">Все 11 направлений</button>
+                    <button class="filter-btn" data-filter="rough">Черновые и стены</button>
+                    <button class="filter-btn" data-filter="engineering">Инженерия</button>
+                    <button class="filter-btn" data-filter="finish">Чистовая и дизайн</button>
+                </div>
+
+                <div class="services-grid">
+                    <!-- 1. Демонтаж -->
+                    <div class="service-card reveal" data-cat="rough">
+                        <div class="service-img-wrap">
+                            <span class="service-num">01</span>
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80" alt="Демонтажные работы" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Демонтажные работы</h3>
+                            <p>Аккуратный снос старых перегородок, снятие стяжки, плитки и покрытий с вывозом строительного мусора.</p>
+                        </div>
                     </div>
-                    <div class="service-card">
-                        <h3>Домостроение</h3>
-                        <p>Строительство коттеджей, устройство фундаментов, возведение стен и монтаж кровельных систем с соблюдением норм ГОСТ.</p>
+
+                    <!-- 2. Штукатурка -->
+                    <div class="service-card reveal" data-cat="rough">
+                        <div class="service-img-wrap">
+                            <span class="service-num">02</span>
+                            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=700&q=80" alt="Штукатурные работы" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Штукатурка стен и откосов</h3>
+                            <p>Выравнивание поверхностей по маякам с соблюдением строгой геометрии и углов 90° под дальнейшую отделку.</p>
+                        </div>
                     </div>
-                    <div class="service-card">
-                        <h3>Коммерческие объекты</h3>
-                        <p>Реконструкция и отделка офисов, магазинов, ресторанов и складских помещений с предоставлением всей отчётности.</p>
+
+                    <!-- 3. Стяжка -->
+                    <div class="service-card reveal" data-cat="rough">
+                        <div class="service-img-wrap">
+                            <span class="service-num">03</span>
+                            <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=700&q=80" alt="Устройство стяжки пола" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Устройство стяжки пола</h3>
+                            <p>Полусухая и классическая цементно-песчаная стяжка со звукоизоляцией, армированием и идеальным горизонтом.</p>
+                        </div>
+                    </div>
+
+                    <!-- 4. Электрика -->
+                    <div class="service-card reveal" data-cat="engineering">
+                        <div class="service-img-wrap">
+                            <span class="service-num">04</span>
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80" alt="Электромонтажные работы" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Электромонтажные работы</h3>
+                            <p>Сборка электрощитов, трассировка кабеля по ГОСТ, установка розеток, выключателей и сценариев освещения.</p>
+                        </div>
+                    </div>
+
+                    <!-- 5. Сантехника -->
+                    <div class="service-card reveal" data-cat="engineering">
+                        <div class="service-img-wrap">
+                            <span class="service-num">05</span>
+                            <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=700&q=80" alt="Сантехнические работы" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Сантехника и отопление</h3>
+                            <p>Коллекторная разводка водоснабжения, монтаж инсталляций, систем защиты от протечек и тёплых полов.</p>
+                        </div>
+                    </div>
+
+                    <!-- 6. Возведение межкомнатных стен -->
+                    <div class="service-card reveal" data-cat="rough">
+                        <div class="service-img-wrap">
+                            <span class="service-num">06</span>
+                            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=700&q=80" alt="Возведение межкомнатных стен" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Возведение межкомнатных стен</h3>
+                            <p>Кладка перегородок из газобетона, кирпича, пазогребневых плит и монтаж каркасных систем со звукоизоляцией.</p>
+                        </div>
+                    </div>
+
+                    <!-- 7. Укладка плитки -->
+                    <div class="service-card reveal" data-cat="finish">
+                        <div class="service-img-wrap">
+                            <span class="service-num">07</span>
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" alt="Укладка плитки и керамогранита" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Укладка плитки и керамогранита</h3>
+                            <p>Облицовка санузлов, фартуков и полов крупноформатным керамогранитом с запилом углов под 45° и эпоксидной затиркой.</p>
+                        </div>
+                    </div>
+
+                    <!-- 8. Общий капитальный ремонт -->
+                    <div class="service-card reveal" data-cat="finish">
+                        <div class="service-img-wrap">
+                            <span class="service-num">08</span>
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Общий капитальный ремонт" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Общий капитальный ремонт</h3>
+                            <p>Комплексная реализация объекта под ключ: синхронизация всех бригад, снабжение материалами и сдача готового помещения.</p>
+                        </div>
+                    </div>
+
+                    <!-- 9. Малярные работы -->
+                    <div class="service-card reveal" data-cat="finish">
+                        <div class="service-img-wrap">
+                            <span class="service-num">09</span>
+                            <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=700&q=80" alt="Малярные работы" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Малярные работы</h3>
+                            <p>Шпатлевание под лампу Лосева, поклейка стеклохолста, безвоздушная и ручная покраска стен, нанесение декоративных покрытий.</p>
+                        </div>
+                    </div>
+
+                    <!-- 10. Помощь в дизайнерских вопросах -->
+                    <div class="service-card reveal" data-cat="finish">
+                        <div class="service-img-wrap">
+                            <span class="service-num">10</span>
+                            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=80" alt="Помощь в дизайнерских вопросах" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Помощь в дизайнерских вопросах</h3>
+                            <p>Подбор цветовых сочетаний, эргономичное планирование розеток и освещения, помощь в выборе чистовых материалов без лишних затрат.</p>
+                        </div>
+                    </div>
+
+                    <!-- 11. Монтаж плинтусов -->
+                    <div class="service-card reveal" data-cat="finish">
+                        <div class="service-img-wrap">
+                            <span class="service-num">11</span>
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Монтаж плинтусов" loading="lazy">
+                        </div>
+                        <div class="service-body">
+                            <h3>Монтаж плинтусов</h3>
+                            <p>Ювелирная установка плинтусов из дюрополимера, МДФ, алюминия и скрытого монтажа с идеальной стыковкой углов.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ЭТАПЫ -->
-        <section id="steps" style="background: rgba(0,0,0,0.15);">
+        <!-- 2. ОСОБЕННОСТИ И 7 ПРЕИМУЩЕСТВ КОМПАНИИ -->
+        <section id="advantages" class="advantages-section">
             <div class="container">
-                <h2 class="section-title">Как мы работаем</h2>
-                <p class="section-sub">Прозрачный процесс от первого звонка до сдачи объекта</p>
+                <div class="reveal">
+                    <span class="section-tag">Почему выбирают COLUMBIA</span>
+                    <h2 class="section-title">Системный подход и преимущества</h2>
+                    <p class="section-sub">Мы выстроили управление стройкой так, чтобы заказчик получал предсказуемый результат без стресса и переплат.</p>
+                </div>
 
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-num">01</div>
-                        <div class="step-content">
-                            <h4>Заявка и замер</h4>
-                            <p>Обсуждаем задачи, выезжаем на объект, делаем замеры и производим предварительный расчёт сметы.</p>
+                <div class="adv-grid">
+                    <!-- 1. Эффективный менеджмент -->
+                    <div class="adv-card reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">01</div>
+                            <h3>Эффективный менеджмент</h3>
                         </div>
+                        <p>Чёткая координация бригад, снабжения и доставки: каждый мастер выходит на объект ровно в свой этап без простоев и накладок.</p>
                     </div>
-                    <div class="step-card">
-                        <div class="step-num">02</div>
-                        <div class="step-content">
-                            <h4>Договор и смета</h4>
-                            <p>Составляем детальную смету, фиксируем сроки, стоимость и подписываем официальный договор.</p>
+
+                    <!-- 2. Контроль качества -->
+                    <div class="adv-card reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">02</div>
+                            <h3>Многоуровневый контроль качества</h3>
                         </div>
+                        <p>Приёмка каждого скрытого и финишного этапа по техническим чек-листам перед переходом к следующему виду работ.</p>
                     </div>
-                    <div class="step-card">
-                        <div class="step-num">03</div>
-                        <div class="step-content">
-                            <h4>Реализация и сдача</h4>
-                            <p>Выполняем работы под руководством прораба, проводим технадзор и передаем готовый объект.</p>
+
+                    <!-- 3. Тайм-менеджмент -->
+                    <div class="adv-card reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">03</div>
+                            <h3>Строгий тайм-менеджмент</h3>
                         </div>
+                        <p>Работаем по календарному графику производства работ. Вы заранее знаете дату окончания каждого этапа и сдачи объекта.</p>
+                    </div>
+
+                    <!-- 4. Полная сметная прозрачность -->
+                    <div class="adv-card reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">04</div>
+                            <h3>Полная сметная прозрачность</h3>
+                        </div>
+                        <p>Детализированный расчёт по каждой позиции работ и материалов. Никаких скрытых коэффициентов и внезапных доплат.</p>
+                    </div>
+
+                    <!-- 5. Контроль фотоотчётами -->
+                    <div class="adv-card reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">05</div>
+                            <h3>Контроль фото- и видеоотчётами</h3>
+                        </div>
+                        <p>Регулярные отчёты с объекта в мессенджер: вы видите прогресс ремонта в реальном времени, даже находясь в другом городе.</p>
+                    </div>
+
+                    <!-- 6. Мастера со стажем от 15 лет -->
+                    <div class="adv-card reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">06</div>
+                            <h3>Мастера со стажем от 15 лет</h3>
+                        </div>
+                        <p>Никаких случайных разнорабочих: на каждый узкий профиль (плитка, электрика, малярка) выходят опытные специалисты со своим профессиональным инструментом.</p>
+                    </div>
+
+                    <!-- 7. Инженерная оптимизация бюджета (переупакованный Value Engineering) -->
+                    <div class="adv-card highlight reveal">
+                        <div class="adv-header">
+                            <div class="adv-icon">07</div>
+                            <h3>Инженерная оптимизация бюджета (Фирменный аудит сметы)</h3>
+                        </div>
+                        <p>Наша закрытая методика технического перерасчёта узлов и материалов: находим способы снизить расходы на ремонт до 20–25% за счёт грамотных инженерных решений — без малейшей потери надёжности, геометрии и внешнего вида.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- БЛОК КОНТАКТОВ / БАННЕР -->
-        <section id="contacts">
+        <!-- 3. РАСЦЕНКИ РАБОТ И ВНУТРЕННИЙ ТЕНДЕР МАСТЕРОВ -->
+        <section id="pricing">
             <div class="container">
-                <div class="sand-banner">
-                    <h2>Обсудим ваш строительный проект?</h2>
-                    <p>Свяжитесь с нами удобным способом, и мы ответим на любые вопросы по стоимости, срокам и материалам.</p>
+                <div class="reveal">
+                    <span class="section-tag">Честное ценообразование</span>
+                    <h2 class="section-title">Как формируется стоимость работ</h2>
+                    <p class="section-sub">Мы отказались от раздутых прайс-листов с накрутками офиса — стоимость определяется реальным объёмом и здоровой конкуренцией внутри нашей базы мастеров.</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="price-card reveal">
+                        <span class="price-tag">Этап 1 • Точный замер</span>
+                        <h3>Полная стоимость после расчёта объёмов</h3>
+                        <p>Мы не называем цифры «с потолка» по телефону. Итоговая сумма формируется только после точного обмера объекта и составления ведомости объёмов работ.</p>
+                        <ul class="price-list">
+                            <li>Учитываем реальную геометрию стен и полов</li>
+                            <li>Фиксируем объём по каждому из 11 направлений</li>
+                            <li>Оплата разбивается на понятные этапы по факту приёмки</li>
+                        </ul>
+                    </div>
+
+                    <div class="price-card reveal">
+                        <span class="price-tag">Этап 2 • Внутренний тендер</span>
+                        <h3>Аукционная система среди 100+ мастеров</h3>
+                        <p>В нашем распоряжении пул из более чем 100 проверенных мастеров и бригад. Когда поступает объект, мы запускаем внутренний тендер на распределение заказа среди профильных специалистов.</p>
+                        <ul class="price-list">
+                            <li>Мастера конкурируют за объект, формируя честную рыночную цену</li>
+                            <li>Вы не переплачиваете лишние проценты посредникам</li>
+                            <li>На объект выходит лучшая свободная бригада под нашим технадзором</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. С КЕМ РАБОТАЕМ -->
+        <section id="clients" style="padding-top: 0;">
+            <div class="container">
+                <div class="reveal">
+                    <span class="section-tag">Масштаб объектов</span>
+                    <h2 class="section-title">С кем мы работаем</h2>
+                </div>
+
+                <div class="clients-grid">
+                    <div class="client-card reveal">
+                        <h3>Частные заказчики и небольшие объёмы</h3>
+                        <p>Берёмся не только за большие квартиры и дома, но и за локальные задачи: ремонт санузла, выравнивание стен в комнате, разводка электрики, укладка плитки или монтаж плинтусов.</p>
+                        <ul class="price-list">
+                            <li>Внимательное отношение к любому бюджету</li>
+                            <li>Аккуратная работа в жилых квартирах</li>
+                        </ul>
+                    </div>
+
+                    <div class="client-card steel-top reveal">
+                        <h3>Коммерческие объекты и бизнес</h3>
+                        <p>Выполняем внутреннюю отделку офисов, магазинов, салонов, кафе и производственных помещений с соблюдением жёстких сроков запуска бизнеса.</p>
+                        <ul class="price-list">
+                            <li>Работа по договору с закрывающей документацией</li>
+                            <li>Оптимизация бюджета под коммерческую задачу</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТНЫЙ БАННЕР -->
+        <section id="contacts" style="padding-top: 0;">
+            <div class="container">
+                <div class="sand-banner reveal">
+                    <h2>Рассчитаем объём работ по вашему объекту</h2>
+                    <p>Опишите задачу в WhatsApp или Telegram — проведём замер, запустим внутренний подбор мастеров и подготовим прозрачную смету.</p>
                     <div class="cta-group">
                         <a id="waBtn2" href="#" target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
                         <a id="tgBtn2" href="#" target="_blank" rel="noopener" class="btn btn-tg">Telegram</a>
@@ -561,11 +1031,11 @@
 
     <footer>
         <div class="container">
-            © 2026 COLUMBIA — Строительная компания. Все права защищены.
+            © 2026 COLUMBIA Construction Group — Внутренняя отделка и капитальный ремонт. Все права защищены.
         </div>
     </footer>
 
-    <!-- НИЖНЯЯ КНОПКА ЗВОНКА -->
+    <!-- НИЖНЯЯ ЗАКРЕПЛЁННАЯ КНОПКА «ПОЗВОНИТЬ» -->
     <div class="bottom-call-bar">
         <a id="callBtn" href="tel:+79990000000" class="btn-call-bottom">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
@@ -573,23 +1043,53 @@
         </a>
     </div>
 
-    <!-- НАСТРОЙКА КОНТАКТОВ -->
     <script>
+        // 1. НАСТРОЙКА КОНТАКТОВ (ЗАМЕНИТЕ НА СВОИ)
         const CONTACTS = {
-            phone: "+79990000000",       // Ваш телефон для звонка
-            whatsapp: "79990000000",     // Номер для WhatsApp (без плюса)
+            phone: "+79990000000",       // Ваш номер для звонка
+            whatsapp: "79990000000",     // Номер для WhatsApp (только цифры)
             telegram: "columbia_stroy"   // Ник в Telegram (без @)
         };
 
         document.getElementById('callBtn').href = 'tel:' + CONTACTS.phone;
-
         const waLink = 'https://wa.me/' + CONTACTS.whatsapp;
+        const tgLink = 'https://t.me/' + CONTACTS.telegram;
+
         document.getElementById('waBtn').href = waLink;
         document.getElementById('waBtn2').href = waLink;
-
-        const tgLink = 'https://t.me/' + CONTACTS.telegram;
         document.getElementById('tgBtn').href = tgLink;
         document.getElementById('tgBtn2').href = tgLink;
+
+        // 2. ФИЛЬТРАЦИЯ 11 НАПРАВЛЕНИЙ РАБОТ
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                serviceCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.cat === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // 3. АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ ПРИ ПРОКРУТКЕ
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
