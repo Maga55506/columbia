@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLUMBIA — Внутренняя отделка и капитальный ремонт под ключ</title> 
+    <title>COLUMBIA — Внутренняя отделка и капитальный ремонт под ключ</title>
     <link rel="icon" type="image/png" href="./file_0000000013508246aa0559ca3913e7da.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,7 +86,7 @@
         }
 
         .brand-logo img {
-            height: 58px;
+            height: 52px;
             width: auto;
             display: block;
             object-fit: contain;
@@ -118,15 +118,188 @@
             color: var(--steel);
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .header-badge {
-            font-size: 0.74rem;
+            font-size: 0.7rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--graphite);
             background: rgba(42, 47, 54, 0.09);
-            padding: 6px 12px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        /* --- КНОПКА БУРГЕР-МЕНЮ (МОБИЛЬНАЯ) --- */
+        .menu-toggle {
+            background: var(--graphite);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: var(--sand);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* --- МОБИЛЬНАЯ ШТОРКА --- */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 82%;
+            max-width: 360px;
+            height: 100vh;
+            background-color: var(--graphite-dark);
+            border-left: 1px solid var(--border-light);
+            z-index: 1000;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+        }
+
+        .mobile-drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .drawer-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--sand);
+        }
+
+        .drawer-close {
+            background: var(--graphite);
+            border: 1px solid var(--border-light);
+            color: var(--sand);
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: auto;
+        }
+
+        .drawer-nav a {
+            color: var(--sand);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(240, 235, 221, 0.05);
+            transition: color 0.2s;
+        }
+
+        .drawer-nav a:hover {
+            color: var(--amber);
+        }
+
+        /* --- СОЦСЕТИ В ШТОРКЕ --- */
+        .drawer-socials {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .social-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--steel);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .social-icons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--graphite);
+            border: 1px solid var(--border-light);
+            color: var(--sand);
+            padding: 11px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .social-btn:hover {
+            border-color: var(--amber);
+            background: rgba(227, 169, 60, 0.08);
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* --- ПЕРВЫЙ ЭКРАН (HERO) --- */
@@ -324,7 +497,7 @@
             font-weight: 700;
         }
 
-        /* --- 11 НАПРАВЛЕНИЙ РАБОТ С КАРТИНКАМИ --- */
+        /* --- 11 НАПРАВЛЕНИЙ РАБОТ --- */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -402,7 +575,7 @@
             color: var(--sand-soft);
         }
 
-        /* --- 7 ПРЕИМУЩЕСТВ КОМПАНИИ --- */
+        /* --- 7 ПРЕИМУЩЕСТВ --- */
         .advantages-section {
             background-color: var(--graphite-dark);
             border-top: 1px solid var(--border-light);
@@ -580,11 +753,43 @@
 
         /* --- ФУТЕР --- */
         footer {
+            background: var(--graphite-dark);
             text-align: center;
-            padding: 32px 20px 44px;
+            padding: 40px 20px 48px;
             color: var(--steel);
             font-size: 0.85rem;
             border-top: 1px solid var(--border-light);
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--graphite);
+            border: 1px solid var(--border-light);
+            color: var(--sand);
+            padding: 8px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: border-color 0.2s;
+        }
+
+        .footer-social-btn:hover {
+            border-color: var(--amber);
+        }
+
+        .footer-social-btn svg {
+            width: 16px;
+            height: 16px;
         }
 
         /* --- НИЖНЯЯ ЗАКРЕПЛЁННАЯ КНОПКА «ПОЗВОНИТЬ» --- */
@@ -625,12 +830,18 @@
         }
 
         /* --- АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И ПК --- */
-        @media (min-width: 768px) {
+        @media (min-width: 900px) {
             .nav-links {
                 display: flex;
             }
+            .header-badge {
+                display: inline-block;
+            }
+            .menu-toggle {
+                display: none;
+            }
             .brand-logo img {
-                height: 66px;
+                height: 62px;
             }
             .hero {
                 padding: 76px 0 88px;
@@ -659,7 +870,7 @@
 </head>
 <body>
 
-    <!-- ШАПКА -->
+    <!-- ШАПКА С НАВИГАЦИЕЙ И КНОПКОЙ МЕНЮ -->
     <header>
         <div class="container header-inner">
             <a href="#" class="brand-logo">
@@ -669,6 +880,7 @@
                 <span id="logoFallback" class="logo-fallback">COLUMBIA</span>
             </a>
 
+            <!-- Ссылки для ПК -->
             <nav class="nav-links">
                 <a href="#services">Направления</a>
                 <a href="#advantages">Преимущества</a>
@@ -677,9 +889,48 @@
                 <a href="#contacts">Контакты</a>
             </nav>
 
-            <div class="header-badge">Внутренняя отделка</div>
+            <div class="header-right">
+                <div class="header-badge">Внутренняя отделка</div>
+                <!-- Кнопка мобильного бургера -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
+
+    <!-- МОБИЛЬНАЯ ШТОРКА (МЕНЮ + СОЦСЕТИ) -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">МЕНЮ САЙТА</span>
+            <button class="drawer-close" id="drawerClose">×</button>
+        </div>
+
+        <nav class="drawer-nav" id="drawerNav">
+            <a href="#services">Направления</a>
+            <a href="#advantages">Преимущества</a>
+            <a href="#pricing">Ценообразование</a>
+            <a href="#clients">Форматы</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <div class="drawer-socials">
+            <div class="social-title">Наши соцсети</div>
+            <div class="social-icons-grid">
+                <a id="instaLink" href="https://instagram.com/columbia_stroy" target="_blank" rel="noopener" class="social-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    Instagram
+                </a>
+                <a id="ytLink" href="https://youtube.com/@columbia_stroy" target="_blank" rel="noopener" class="social-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"></polygon></svg>
+                    YouTube
+                </a>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- ПЕРВЫЙ ЭКРАН -->
@@ -802,11 +1053,11 @@
                         </div>
                     </div>
 
-                    <!-- 6. Возведение стен (Обновлено фото: каменщик кладёт кирпич / блоки) -->
+                    <!-- 6. Возведение стен -->
                     <div class="service-card reveal" data-cat="rough">
                         <div class="service-img-wrap">
                             <span class="service-num">06</span>
-                            <img src="Каменщик.jfif">
+                            <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=700&q=80" alt="Возведение межкомнатных стен" loading="lazy">
                         </div>
                         <div class="service-body">
                             <h3>Возведение межкомнатных стен</h3>
@@ -999,8 +1250,19 @@
         </section>
     </main>
 
+    <!-- ФУТЕР С СОЦСЕТЯМИ -->
     <footer>
         <div class="container">
+            <div class="footer-socials">
+                <a href="https://instagram.com/columbia_stroy" target="_blank" rel="noopener" class="footer-social-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    Instagram
+                </a>
+                <a href="https://youtube.com/@columbia_stroy" target="_blank" rel="noopener" class="footer-social-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"></polygon></svg>
+                    YouTube
+                </a>
+            </div>
             © 2026 COLUMBIA Construction Group — Внутренняя отделка и капитальный ремонт. Все права защищены.
         </div>
     </footer>
@@ -1030,6 +1292,30 @@
         document.getElementById('tgBtn').href = tgLink;
         document.getElementById('tgBtn2').href = tgLink;
 
+        // --- УПРАВЛЕНИЕ МОБИЛЬНОЙ ШТОРКОЙ МЕНЮ ---
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawerNavLinks = document.querySelectorAll('#drawerNav a');
+
+        function toggleDrawer() {
+            mobileDrawer.classList.toggle('open');
+            drawerOverlay.classList.toggle('open');
+        }
+
+        menuToggle.addEventListener('click', toggleDrawer);
+        drawerClose.addEventListener('click', toggleDrawer);
+        drawerOverlay.addEventListener('click', toggleDrawer);
+
+        // Закрывать шторку при клике на любой пункт меню
+        drawerNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleDrawer();
+            });
+        });
+
+        // Фильтрация направлений работ
         const filterBtns = document.querySelectorAll('.filter-btn');
         const serviceCards = document.querySelectorAll('.service-card');
 
